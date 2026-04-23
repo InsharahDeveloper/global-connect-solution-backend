@@ -8,6 +8,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Contact API
 app.post("/contact", async (req, res) => {
   const { name, email, message } = req.body;
 
@@ -35,10 +36,14 @@ app.post("/contact", async (req, res) => {
     res.json({ success: true, message: "Email Sent Successfully" });
 
   } catch (error) {
+    console.log(error);
     res.json({ success: false, message: "Failed to Send Email" });
   }
 });
 
-app.listen(5000, () => {
-  console.log("Server Running on Port 5000");
+// ✅ IMPORTANT FIX FOR RENDER
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Server Running on Port ${PORT}`);
 });
