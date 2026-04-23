@@ -24,6 +24,9 @@ app.post("/contact", async (req, res) => {
         user: process.env.EMAIL,
         pass: process.env.PASS,
       },
+      tls: {
+        rejectUnauthorized: false
+      }
     });
 
     await transporter.sendMail({
